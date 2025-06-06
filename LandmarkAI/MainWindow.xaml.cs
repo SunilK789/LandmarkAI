@@ -1,13 +1,6 @@
-﻿using System.Text;
+﻿using Microsoft.Win32;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace LandmarkAI
 {
@@ -19,6 +12,17 @@ namespace LandmarkAI
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void selectButton_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filter = "Image files (*.png;*.jpg)|*.png;*.jpg;*.jpeg|All files (*.*)|*.*";
+            if (dialog.ShowDialog() == true)
+            {
+                string fileName = dialog.FileName;
+                selectedImage.Source = new BitmapImage(new Uri(fileName));
+            }
         }
     }
 }
